@@ -25,7 +25,7 @@ export class NotesService {
         //update note
         updateNote =async(id:any,note:any)=>{
 
-           const  notes = this.notesModel.findByIdAndUpdate(id,note,{new :true});//{},null
+           const  notes =  await this.notesModel.findByIdAndUpdate(id,note,{new :true});//{},null
            if(!notes)
             throw new HttpException('this note note found', HttpStatus.NOT_FOUND);
             return {message:"sucess",data:notes}
@@ -35,7 +35,7 @@ export class NotesService {
 
      delteNote =async(id:any)=>{
 
-           const  notes =this.notesModel.findById(id)
+           const  notes = await this.notesModel.findById(id)
            // this.notesModel.findOneAndDelete({_id:id});//{},nul
           
            if(!notes)
